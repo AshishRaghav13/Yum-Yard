@@ -1,18 +1,18 @@
 import './App.css';
 import Header from "./components/Header";
-import Body from "./components/Body";
+import {Outlet} from "react-router-dom";
 
 
-const App = ()=>{
-  return(
-    <div className = "app">
-      {/* Header */}
-      <Header/>
-      {/* Body  */}
-      <Body/>
-      {/* footer */}
-    </div>
-  )
-}
+
+const App = () => {
+  return (
+      <div className="app">
+        <Header />
+        <Outlet/>
+        {/* footer */}
+      </div>
+  );
+};
+
 
 export default App;

@@ -4,6 +4,7 @@
   box-shadow: 1px 4px 5px #eceaea;
 }
 
+
 .logo-container{
     margin-left: 100px;
 }
@@ -65,11 +66,20 @@
     display: none;
 }
 
+.filter{
+  display: flex;
+}
+
 .filter-btn{
-    padding: 7px;
     margin-bottom: 5px;
     cursor: pointer;
     border-radius: 7%;
+
+}
+
+.search-btn{
+  margin: 4px;
+  cursor: pointer;
 }
 
 
@@ -148,6 +158,10 @@
     100% {
       left: 100%;
     }
+  }
+
+  .login{
+    margin: 7px;
   }
   
   
