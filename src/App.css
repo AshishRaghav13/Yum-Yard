@@ -1,167 +1,82 @@
-.header{
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 1px 4px 5px #eceaea;
-}
-
-
-.logo-container{
-    margin-left: 100px;
-}
-
-.nav-items ul{
-    padding: 10px;
-    display: flex;
-    font-size: 17px;
-    list-style-type: none;
-    margin-right: 100px;
-   
-}
-
-.nav-items ul li{
-    padding: 7px;
-}
-
-
-.search{
-    padding: 20px;
-}
-
-.res-container{
-    display: flex;
-    flex-wrap: wrap;
-    cursor: pointer;
-}
-
-.res-card{
-    width: 200px;
-    padding: 10px;
-    margin: 13px;
-    border-radius: 5%;
-    box-shadow: 1px 4px 5px #aaaaaa;
-}
-
-.res-logo{
-    width: 100%;
-    /* border: 1px solid black; */
-    border-radius: 5%;
-}
-
-.carousel-container{
-    margin-top: 10px;
-    display: flex;
-    overflow-y: auto;
-    margin-bottom: 20px;
-    box-shadow: 1px 2px 5px #edebeb;
-    height: 300px;
-    
-}
-
-.carousel-img{
-    width: 270px;
-    margin-top: -50px;
-}
-
-.carousel-container::-webkit-scrollbar {
-    display: none;
-}
-
-.filter{
-  display: flex;
-}
-
-.filter-btn{
-    margin-bottom: 5px;
-    cursor: pointer;
-    border-radius: 7%;
-
-}
-
-.search-btn{
-  margin: 4px;
-  cursor: pointer;
-}
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* shimmer effect */
 .shimmer-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  
-  .shimmer-card {
-    width: 250px;
-    height: 350px;
-    padding: 16px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-    margin-top: 15px;
-    margin-left: 30px;
-    margin-right: 50px;
-  }
-  
-  .shimmer-thumbnail {
-    width: 100%;
-    height: 180px;
-    background-color: #f6f7f8;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .shimmer-line {
-    width: 100%;
-    height: 20px;
-    background-color: #f6f7f8;
-    margin-bottom: 8px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .shimmer-line-1 {
-    width: 80%;
-  }
-  
-  .shimmer-line-2 {
-    width: 60%;
-  }
-  
-  .shimmer-line-3 {
-    width: 40%;
-    margin-bottom: 0;
-  }
-  
-  .shimmer-card::before,
-  .shimmer-thumbnail::before,
-  .shimmer-line::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -150px;
-    height: 100%;
-    width: 150px;
-    background: linear-gradient(to right, transparent 0%, #f0f0f0 50%, transparent 100%);
-    animation: shimmer 1.5s infinite;
-  }
-  
-  @keyframes shimmer {
-    0% {
-      left: -150px;
-    }
-    50% {
-      left: 100%;
-    }
-    100% {
-      left: 100%;
-    }
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 
-  .login{
-    margin: 7px;
+.shimmer-card {
+  width: 250px;
+  height: 350px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 50px;
+}
+
+.shimmer-thumbnail {
+  width: 100%;
+  height: 180px;
+  background-color: #f6f7f8;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-line {
+  width: 100%;
+  height: 20px;
+  background-color: #f6f7f8;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-line-1 {
+  width: 80%;
+}
+
+.shimmer-line-2 {
+  width: 60%;
+}
+
+.shimmer-line-3 {
+  width: 40%;
+  margin-bottom: 0;
+}
+
+.shimmer-card::before,
+.shimmer-thumbnail::before,
+.shimmer-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(to right, transparent 0%, #f0f0f0 50%, transparent 100%);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150px;
   }
-  
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
   
