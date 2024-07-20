@@ -3,6 +3,7 @@ import Restaurantcard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -10,6 +11,7 @@ const Body = () => {
   const [searchtext, setSearchText] = useState("");
 
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const status = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
@@ -28,6 +30,9 @@ const Body = () => {
     setCarouselList(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
   };
 
+  if(status === false){
+    return <h1>Looks like you are Offline!! Please Check your internet connection</h1>
+  }
   // Conditional Rendering
   if (listOfRestaurants.length === 0 && carouselList.length === 0) {
     return <Shimmer />;

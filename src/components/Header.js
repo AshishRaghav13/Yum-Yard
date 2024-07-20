@@ -1,8 +1,10 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = ()=>{
     const [btnNameReact,setBtnNameReact] = useState("Login");
+    const status = useOnlineStatus();
     return(
         <div className = "header">
             <div className="logo-container">
@@ -14,6 +16,7 @@ const Header = ()=>{
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact Us</Link></li>
                     <li><Link to="/cart">Cart</Link></li>
+                    <li>Online Status :{status?"✅":"❌"}</li>
                     <button className="login" onClick={()=>{
                         btnNameReact === "Login" ? setBtnNameReact("Logout")
                         : setBtnNameReact("Login");
