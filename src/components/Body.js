@@ -1,5 +1,5 @@
 import Carousel from "./Carousel";
-import Restaurantcard from "./RestaurantCard";
+import Restaurantcard, { isOpen } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -11,8 +11,12 @@ const Body = () => {
   const [carouselList, setCarouselList] = useState([]);
   const [searchtext, setSearchText] = useState("");
 
+  // console.log(listOfRestaurants)
+
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const status = useOnlineStatus();
+
+  const RestaurantOpen = isOpen(Restaurantcard);
 
   useEffect(() => {
     fetchData();
@@ -27,12 +31,18 @@ const Body = () => {
     setListOfRestaurants(
       json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilteredRestaurant(json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(
+      json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
     setCarouselList(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
   };
 
-  if(status === false){
-    return <h1>Looks like you are Offline!! Please Check your internet connection</h1>
+  if (status === false) {
+    return (
+      <h1>
+        Looks like you are Offline!! Please Check your internet connection
+      </h1>
+    );
   }
   // Conditional Rendering
   if (listOfRestaurants.length === 0 && carouselList.length === 0) {
@@ -47,30 +57,49 @@ const Body = () => {
       </div>
       <div className="flex m-4 p-4  ">
         <div className="search">
-          <input className="border bottom-solid border-gray-900" type="text" value={searchtext} onChange={(e)=>{
-            setSearchText(e.target.value);
-          }}/>
-          <button className="border border-gray-900 px-3 cursor-pointer py-1 m-3 rounded-md" onClick={()=>{
-            const filteredRestaurant = listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(searchtext.toLowerCase()));
-            setFilteredRestaurant(filteredRestaurant);
-          }}>Search</button>
+          <input
+            className="border bottom-solid border-gray-900"
+            type="text"
+            value={searchtext}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="border border-gray-900 px-3 cursor-pointer py-1 m-3 rounded-md"
+            onClick={() => {
+              const filteredRestaurant = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchtext.toLowerCase())
+              );
+              setFilteredRestaurant(filteredRestaurant);
+            }}
+          >
+            Search
+          </button>
         </div>
         <div className="border border-solid border-gray-900 p-4 rounded-md">
-        <button
-          onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (res) => res.info.avgRating >= 4.5
-            );
-            setListOfRestaurants(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+          <button
+            onClick={() => {
+              const filteredList = listOfRestaurants.filter(
+                (res) => res.info.avgRating >= 4.5
+              );
+              setListOfRestaurants(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
         </div>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-evenly">
         {filteredRestaurant.map((restaurant) => (
-          <Link key={restaurant.info.id} to={"restaurants/" + restaurant.info.id}><Restaurantcard resData={restaurant} /></Link>
+          <Link
+            key={restaurant.info.id}
+            to={"restaurants/" + restaurant.info.id}
+          >
+            {
+              restaurant.info.isOpen ? (<RestaurantOpen delievry={restaurant.info.sla.deliveryTime} resData={restaurant}/>) :(<Restaurantcard resData={restaurant} />)
+            }
+          </Link>
         ))}
         {/* <Restaurantcard resName="KFC" cuisine="Veg Crispy Burgers" />
                 <Restaurantcard resName="KFC" cuisine="Veg Crispy Burgers" /> */}

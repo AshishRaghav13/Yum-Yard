@@ -17,12 +17,11 @@ const RestaurantMenu = () => {
     console.log(itemCards);
 
   return(
-    <div className='mx-[33%] bg-slate-100 p-8 mt-20 shadow-2xl'>
+    <div className='mx-[33%] bg-slate-100 p-8 mt-20 shadow-2xl rounded-xl'>
        <h2 className='font-bold'>{name}</h2>
        <h3>{avgRating} stars</h3>
        <h3>{costForTwoMessage}</h3>
        <h3>{cuisines.join(", ")}</h3>
-       <div className=''>
        <h2 className='font-bold'>Menu</h2>
        <ul className='list-decimal'>
        {itemCards.map(item=>{
@@ -30,8 +29,7 @@ const RestaurantMenu = () => {
         })
       }
        </ul>
-       </div>
-    </div>
+      </div>
   )
 }
 
