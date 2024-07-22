@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+// import '../App.css';
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -39,23 +40,23 @@ const Body = () => {
   }
   return (
     <div className="body">
-      <div className="carousel-container">
+      <div className="flex">
         {carouselList.map((items) => (
           <Carousel key={items.id} imgData={items} />
         ))}
       </div>
-      <div className="filter">
+      <div className="flex m-4 p-4  ">
         <div className="search">
-          <input className="search-box" type="text" value={searchtext} onChange={(e)=>{
+          <input className="border bottom-solid border-gray-900" type="text" value={searchtext} onChange={(e)=>{
             setSearchText(e.target.value);
           }}/>
-          <button className="search-btn" onClick={()=>{
+          <button className="border border-gray-900 px-3 cursor-pointer py-1 m-3 rounded-md" onClick={()=>{
             const filteredRestaurant = listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(searchtext.toLowerCase()));
             setFilteredRestaurant(filteredRestaurant);
           }}>Search</button>
         </div>
+        <div className="border border-solid border-gray-900 p-4 rounded-md">
         <button
-          className="filter-btn"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
               (res) => res.info.avgRating >= 4.5
@@ -65,8 +66,9 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestaurant.map((restaurant) => (
           <Link key={restaurant.info.id} to={"restaurants/" + restaurant.info.id}><Restaurantcard resData={restaurant} /></Link>
         ))}
