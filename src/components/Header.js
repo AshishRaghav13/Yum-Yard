@@ -1,8 +1,13 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Header = ()=>{
+
+    const data = useContext(UserContext);    // used to avoid prop drilling
+
     const [btnNameReact,setBtnNameReact] = useState("Login");
     const status = useOnlineStatus();
     return(
@@ -22,6 +27,7 @@ const Header = ()=>{
                         btnNameReact === "Login" ? setBtnNameReact("Logout")
                         : setBtnNameReact("Login");
                     }}>{btnNameReact}</button>
+                    <li className="font-semibold">{data.loggedInUser}</li>
                  </ul>
             </div>
         </div>

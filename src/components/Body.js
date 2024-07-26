@@ -1,9 +1,10 @@
 import Carousel from "./Carousel";
 import Restaurantcard, { isOpen } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 // import '../App.css';
 
 const Body = () => {
@@ -37,6 +38,8 @@ const Body = () => {
     setCarouselList(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
   };
 
+  const {loggedInUser,setUserName} = useContext(UserContext);
+  
   if (status === false) {
     return (
       <h1>
@@ -44,10 +47,12 @@ const Body = () => {
       </h1>
     );
   }
+
   // Conditional Rendering
   if (listOfRestaurants.length === 0 && carouselList.length === 0) {
     return <Shimmer />;
   }
+
   return (
     <div className="body">
       <div className="flex">
@@ -58,7 +63,7 @@ const Body = () => {
       <div className="flex m-4 p-4  ">
         <div className="search">
           <input
-            className="border bottom-solid border-gray-900"
+            className="border bottom-solid border-black p-1 rounded-md"
             type="text"
             value={searchtext}
             onChange={(e) => {
@@ -66,7 +71,7 @@ const Body = () => {
             }}
           />
           <button
-            className="border border-gray-900 px-3 cursor-pointer py-1 m-3 rounded-md"
+            className="border border-black px-3 cursor-pointer py-1 m-3 rounded-md"
             onClick={() => {
               const filteredRestaurant = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchtext.toLowerCase())
@@ -77,8 +82,8 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div className="border border-solid border-gray-900 p-4 rounded-md">
-          <button
+        <div>
+          <button className="border border-black p-1 rounded-md m-3"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4.3
@@ -89,6 +94,12 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
+
+        <div className="m-3">
+          <label>UserName : </label>
+          <input className="border border-black p-1 rounded-md" type="text" value={loggedInUser} onChange={(e)=>setUserName(e.target.value)}/>
+        </div>
+
       </div>
       <div className="flex flex-wrap justify-evenly">
         {filteredRestaurant.map((restaurant) => (
