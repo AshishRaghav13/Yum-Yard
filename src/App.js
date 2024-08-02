@@ -8,12 +8,12 @@ import appStore from './utils/appStore';
 
 
 
+
 const App = () => {
   const [userName,setUserName] = useState("Ashish")
   return (
     <Provider store={appStore}>
-    {/*used to change the value inside using .Provider */}
-    <UserContext.Provider value={{loggedInUser:userName , setUserName}}>  
+    <UserContext.Provider value={{loggedInUser:userName , setUserName}}>
       <div className="app">
         <Header />
         <Outlet/>
