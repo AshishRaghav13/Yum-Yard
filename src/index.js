@@ -9,6 +9,7 @@ import Body from './components/Body';
 import About from './components/About';
 import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
+import Cart from './components/Cart';
 // import Grocery from './components/Grocery';
 
 
@@ -39,7 +40,11 @@ const appRouter = createBrowserRouter([
             {
                 path:"/grocery",
                 element:<Suspense fallback={<h3>Loading...</h3>}><Grocery/></Suspense>
-            }
+            },
+            {
+                path: "/cart",
+                element:<Cart/>
+            },
 
         ],
         errorElement:<Error/>
