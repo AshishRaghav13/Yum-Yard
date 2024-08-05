@@ -13,7 +13,10 @@ const cartSlice = createSlice({
             state.items.pop();
         },
         clearCart:(state)=>{
-            state.items.length = 0;
+            // either mutate the existing state or return a new state
+            state.items.length = 0;     // mutating the existing state
+
+            // return { items:[] };              // returning new state
         }
     }
 })
