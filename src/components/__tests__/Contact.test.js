@@ -3,13 +3,14 @@ import Contact from "../Contact"
 
 // describe is used to group multiple test cases , we can also have multiple and nested describe groupings
 describe("Grouping Contact Us Test Cases",()=>{      
-    test("Component Should Render",()=>{
+    test("Component Should Render",()=>{ 
         render(<Contact/>)
         const element = screen.getByText("Contact Us");
         expect(element).toBeInTheDocument();
     })
     
-    test("Should have Button",()=>{
+    // can use "it" in place of test alse for for better readibility
+    it("Should have Button",()=>{
         render(<Contact/>)
         const btn = screen.getByRole("button");
         expect(btn).toBeInTheDocument();
